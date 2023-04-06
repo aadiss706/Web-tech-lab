@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Application</title>
+  <!-- <script src="canvaScript.js"></script> -->
+</head>
+<body bgcolor="pink">
+  <div>
+    <p><h2 name="html5">HTML5</h2></p>
+    <div>
+      <p><h3>Creation of a Canvas</h3></p>
+      <canvas id="myCanvas1" width="150" height="150" style="border:1px solid green"></canvas>
+      <script>
+        var canvas = document.getElementById("myCanvas1");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "green";
+        ctx.fillRect(25, 25, 100, 100);
+      </script>
+    </div>
+    <div>
+      <h3>Rectangular Stripped Canvas</h3> 
+      <canvas id="myCanvas2" width="150" height="150" style="border:1px solid #6d0b0b;">
+        Your browser does not support the HTML5 canvas tag.</canvas>        
+        <script>
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.fillRect(25,25,100,100);
+        ctx.clearRect(45,45,60,60);
+        ctx.strokeRect(50,50,50,50);        
+        </script>             
+    </div>
+    <div>
+      <h3>Rectangular Stroked Canvas</h3>
+      <canvas id = "myCanvas3" width="150" height="150" style="border:1px solid green">Your browser does not support the canvas tag</canvas>
+      <script>
+        var c = document.getElementById("myCanvas3");
+        if(c.getContext) {
+          var ctx=c.getContext("2d");
+          ctx.beginPath();
+          ctx.moveTo(25,25);
+          ctx.lineTo(105,25);
+          ctx.lineTo(25,105);
+          ctx.fill();
+          // Stroked Triangle
+          ctx.beginPath();
+          ctx.moveTo(125,125);
+          ctx.lineTo(125,45);
+          ctx.lineTo(45,125);
+          ctx.closePath();
+          ctx.stroke();          
+        }
+        else {
+          alert("You need upgraded version of your browser to see the output");        
+        }            
+      </script>
+    </div>  
+    <div>
+      <h3>Click to play audio</h3>
+      <audio src="WhatsApp Audio 2023-03-27 at 11.51.32 AM.mp3" controls  width="100%"></audio>
+    </div>
+    <div>
+      <h3>Click to play video</h3>
+      <video src="The_Marvelous_Mrs_Maisel_S01E01_Pilot_720p_WEBRip_2CH_x265_HEVC.mkv" controls width="100%" ></video>
+    </div>
+    <br>
+    <div>
+      <p><h3>Current Updated Geo-Location</h3></p>
+      <p id = "showPosition"></p>
+        <script>
+        // Request permission to access the user's location
+          navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+        // Define a success callback function to get the user's location
+        function successCallback(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          // Update the user's location in the page
+          document.getElementById("showPosition").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+        }
+        // Define an error callback function in case the user denies permission
+        function errorCallback(error) {
+          console.log("Error getting location: " + error.message);
+        }
+        // Continuously update the user's location using watchPosition()
+        var watchId = navigator.geolocation.watchPosition(successCallback, errorCallback);
+        // console.log(watchId);
+      </script>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
